@@ -13,6 +13,9 @@ public class Player : MovableObject
 
     private Animator _anim;
     private bool _attacking;
+    private int _experience = 0;
+    private int _playerLevel = 1;
+    private int _requiredExp = 0;
     public int Ammo { get; private set; }
 
     protected override void Awake()
@@ -20,6 +23,7 @@ public class Player : MovableObject
         base.Awake();
         _anim = GetComponent<Animator>();
         Ammo = MaxAmmo;
+        _requiredExp = CalculateRequiredExp();
     }
 
     void Update()
@@ -75,5 +79,22 @@ public class Player : MovableObject
     public void AddHealth(int value)
     {
         Health = Mathf.Clamp(Health + value, 0, MaxHealth);
+    }
+
+    public void AddExp(int value)
+    {
+        _experience += value;
+        
+        if(_experience >= _requiredExp)
+        {
+            _playerLevel++;
+            _experience -= _requiredExp;
+            _requiredExp = CalculateRequiredExp();
+        }
+    }
+
+    private int CalculateRequiredExp()
+    {
+        return 25 * (_playerLevel + 1) * (1 + (_playerLevel + 1));
     }
 }

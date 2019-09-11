@@ -8,12 +8,12 @@ public class PickUp : MonoBehaviour
 
     private int _bonusHeal = 5;
     private int _bonusAmmo = 10;
+    private int _expGained = 5;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))   //health, ammo, experience, 
         {
-            Debug.Log(Type);
             switch(Type)
             {
                 case "Heal":
@@ -23,6 +23,7 @@ public class PickUp : MonoBehaviour
                     collision.gameObject.GetComponent<Player>().AddAmmo(_bonusAmmo);
                     break;
                 case "Exp":
+                    collision.gameObject.GetComponent<Player>().AddExp(_expGained);
                     break;
                 default:
                     break;
