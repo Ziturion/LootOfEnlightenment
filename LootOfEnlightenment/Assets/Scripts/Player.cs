@@ -8,7 +8,7 @@ public class Player : MovableObject
     {
         if (Input.anyKey)
         {
-            Move(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), MovementSpeed);
+            Move(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), MovementSpeed);
         }
     }
 }
