@@ -60,6 +60,8 @@ public class MeleeEnemy : MovableObject
 
     public override void OnKilled()
     {
+        PickUpSpawner expSpawner = GameObject.FindObjectOfType(typeof(PickUpSpawner)) as PickUpSpawner;
+        expSpawner.SpawnExp(transform.position);
         Destroy(gameObject);
     }
 
