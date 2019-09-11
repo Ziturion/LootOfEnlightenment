@@ -24,6 +24,7 @@ public class Player : MovableObject
         _anim = GetComponent<Animator>();
         Ammo = MaxAmmo;
         _requiredExp = CalculateRequiredExp();
+        AttackMultiplayer = 1;
     }
 
     void Update()

@@ -38,6 +38,7 @@ public class TileBar_UI : MonoBehaviour
         int tiles = Mathf.FloorToInt(MaxAmount * Value);
         while (tiles < _activetiles)
         {
+            
             _tiles.Last(t => t.activeSelf).SetActive(false);
             _activetiles--;
             if (SecondSprite != null)
