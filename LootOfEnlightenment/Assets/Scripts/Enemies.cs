@@ -24,8 +24,8 @@ public class Enemies : MovableObject
     {
         if(collision.gameObject.transform.position.y > transform.position.y)
         {
-            //collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder < gameObject.GetComponent<SpriteRenderer>().sortingOrder ? 
-            GetComponent<SpriteRenderer>().sortingOrder += collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
+            if(collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder >= gameObject.GetComponent<SpriteRenderer>().sortingOrder) 
+            GetComponent<SpriteRenderer>().sortingOrder = collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
         }
     }
 }
