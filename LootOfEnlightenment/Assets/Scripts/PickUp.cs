@@ -17,11 +17,11 @@ public class PickUp : MonoBehaviour
             switch(Type)
             {
                 case "Heal":
-                    //collision.gameObject.GetComponent<Player>().
+                    collision.gameObject.GetComponent<Player>().Health += collision.gameObject.GetComponent<Player>().StartHealth / 5;
                     break;
-                case "Speed":
-                    collision.gameObject.GetComponent<Player>().MovementSpeed *= 1.5f;
-                    break;
+                //case "Speed":
+                //    collision.gameObject.GetComponent<Player>().MovementSpeed *= 1.5f;
+                //    break;
                 case "Ammo":
                     break;
                 case "Exp":
