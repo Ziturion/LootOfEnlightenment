@@ -7,18 +7,19 @@ public class Player : MovableObject
     public float AttackCharge = 2f;
     public float ProjectileSpeed = 0.25f;
     public float AttackDamage = 5f;
-    public int Ammo = 50;
+    public int MaxAmmo = 50;
 
     public float AttackMultiplayer { get; private set; }
 
     private Animator _anim;
-    private bool attacking;
-    
+    private bool _attacking;
+    private int _ammo;
 
     protected override void Awake()
     {
         base.Awake();
         _anim = GetComponent<Animator>();
+        _ammo = MaxAmmo;
     }
 
     void Update()
@@ -28,17 +29,17 @@ public class Player : MovableObject
             Move(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), MovementSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo != 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _ammo != 0)
         {
             StartAttack();
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && Ammo != 0)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && _ammo != 0)
         {
             StopAttack();
         }
 
-        if (attacking)
+        if (_attacking)
         {
             AttackMultiplayer = Mathf.Clamp(AttackMultiplayer + Time.deltaTime, 1, AttackCharge);
         }
@@ -48,21 +49,26 @@ public class Player : MovableObject
     {
         Vector3 dir = Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
         ProjectilePool.Instance.SpawnProjectile(transform.position, dir, AttackDamage * AttackMultiplayer, ProjectileSpeed);
-        Ammo--;
-        attacking = false;
+        _ammo--;
+        _attacking = false;
         AttackMultiplayer = 1;
     }
 
     private void StartAttack()
     {
-        if (!attacking)
+        if (!_attacking)
             _anim.Play("PlayerAttack");
 
-        attacking = true;
+        _attacking = true;
     }
 
     public override void OnKilled()
     {
         Debug.Log("Player Ded.");
+    }
+
+    public void AddAmmo(int value)
+    {
+        _ammo += value;
     }
 }

@@ -20,7 +20,7 @@ public class PickUp : MonoBehaviour
                     collision.gameObject.GetComponent<Player>().Health += _bonusHeal;
                     break;
                 case "Ammo":
-                    collision.gameObject.GetComponent<Player>().Ammo += _bonusAmmo;
+                    collision.gameObject.GetComponent<Player>().AddAmmo(_bonusAmmo);
                     break;
                 case "Exp":
                     break;

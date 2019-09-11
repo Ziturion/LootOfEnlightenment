@@ -36,6 +36,7 @@ public class ProjectilePool : MonoBehaviour
     public void SpawnProjectile(Vector3 position, Vector3 direction, float damage, float speed)
     {
         Projectile newProjectile = _allProjectiles.First();
+        newProjectile.transform.Rotate(Vector3.forward, Vector2.SignedAngle(Vector2.up, direction));
         newProjectile.transform.position = position;
         newProjectile.gameObject.SetActive(true);
         newProjectile.Init(direction, damage, speed);
@@ -51,6 +52,7 @@ public class ProjectilePool : MonoBehaviour
 
             if (!activeProjectile.gameObject.activeSelf)
             {
+                activeProjectile.transform.rotation = Quaternion.identity;
                 _allProjectiles.Add(activeProjectile);
                 _allActiveProjectiles.Remove(activeProjectile);
             }
