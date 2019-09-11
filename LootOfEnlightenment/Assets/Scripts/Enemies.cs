@@ -18,6 +18,14 @@ public class Enemies : MovableObject
         {
             Move(playerInDirection.normalized, Speed);
         }
-        Debug.Log((_playerCharacter.transform.position - transform.position).magnitude);
+    }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.transform.position.y > transform.position.y)
+        {
+            //collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder < gameObject.GetComponent<SpriteRenderer>().sortingOrder ? 
+            GetComponent<SpriteRenderer>().sortingOrder += collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder + 1;
+        }
     }
 }
