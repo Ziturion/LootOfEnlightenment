@@ -4,17 +4,19 @@
 public class Player : MovableObject
 {
     public float MovementSpeed = 0.1f;
-    public float AttackCharge = 1f;
+    public float AttackCharge = 2f;
     public float ProjectileSpeed = 0.25f;
+    public float AttackDamage = 5f;
 
-    public float AttackLength { get; private set; }
+    public float AttackMultiplayer { get; private set; }
 
     private Animator _anim;
     private bool attacking;
     
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _anim = GetComponent<Animator>();
     }
 
@@ -37,16 +39,16 @@ public class Player : MovableObject
 
         if (attacking)
         {
-            AttackLength = Mathf.Clamp(AttackLength + Time.deltaTime, 0, AttackCharge);
+            AttackMultiplayer = Mathf.Clamp(AttackMultiplayer + Time.deltaTime, 1, AttackCharge);
         }
     }
 
     private void StopAttack()
     {
         Vector3 dir = Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
-        ProjectilePool.Instance.SpawnProjectile(transform.position, dir, AttackLength, ProjectileSpeed);
+        ProjectilePool.Instance.SpawnProjectile(transform.position, dir, AttackDamage * AttackMultiplayer, ProjectileSpeed);
         attacking = false;
-        AttackLength = 0;
+        AttackMultiplayer = 1;
     }
 
     private void StartAttack()
@@ -55,5 +57,10 @@ public class Player : MovableObject
             _anim.Play("PlayerAttack");
 
         attacking = true;
+    }
+
+    public override void OnKilled()
+    {
+        Debug.Log("Player Ded.");
     }
 }

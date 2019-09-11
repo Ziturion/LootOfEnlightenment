@@ -975,9 +975,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd074ec090cc97d49a699381d229a6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartHealth: 10
   MovementSpeed: 0.1
-  AttackCharge: 1
+  AttackCharge: 2
   ProjectileSpeed: 0.15
+  AttackDamage: 2
 --- !u!61 &675319448
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -36,21 +36,23 @@ public class ProjectilePool : MonoBehaviour
     public void SpawnProjectile(Vector3 position, Vector3 direction, float damage, float speed)
     {
         Projectile newProjectile = _allProjectiles.First();
-        _allProjectiles.Remove(newProjectile);
-        _allActiveProjectiles.Add(newProjectile);
         newProjectile.transform.position = position;
         newProjectile.gameObject.SetActive(true);
         newProjectile.Init(direction, damage, speed);
+        _allProjectiles.Remove(newProjectile);
+        _allActiveProjectiles.Add(newProjectile);
     }
 
     void Update()
     {
-        foreach (Projectile activeProjectile in _allActiveProjectiles)
+        for (int i = _allActiveProjectiles.Count - 1; i >= 0; i--)
         {
-            if (!activeProjectile.enabled)
+            Projectile activeProjectile = _allActiveProjectiles[i];
+
+            if (!activeProjectile.gameObject.activeSelf)
             {
-                _allActiveProjectiles.Remove(activeProjectile);
                 _allProjectiles.Add(activeProjectile);
+                _allActiveProjectiles.Remove(activeProjectile);
             }
         }
     }

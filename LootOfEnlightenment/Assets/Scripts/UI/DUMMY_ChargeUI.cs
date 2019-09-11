@@ -9,6 +9,6 @@ public class DUMMY_ChargeUI : MonoBehaviour
 
     void Update()
     {
-        Text.text = PlayerRef.AttackLength.ToString("0.00");
+        Text.text = PlayerRef.AttackMultiplayer.ToString("0.00");
     }
 }
