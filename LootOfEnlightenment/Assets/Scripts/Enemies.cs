@@ -1,27 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemies : MovableObject
 {
-    private GameObject _playerCharacter;
-    public float DetectionRange;
-    public float Speed;
+    public float DetectionRange = 100;
+    public float Speed = 0.02f;
+    public float AttentionLength = 3;
+    public float AttackSpeed = 0.2f;
+    public float Damage = 1;
     public Slider HealthSlider;
+
+    private GameObject _target;
+    private float _attention;
+    private float _attackCooldown;
 
     protected override void Awake()
     {
         base.Awake();
-        _playerCharacter = GameObject.FindWithTag("Player");
+        _target = GameObject.FindWithTag("HeavensDoor");
     }
 
     private void Update()
     {
-        Vector3 playerInDirection = _playerCharacter.transform.position - transform.position;
+        Vector3 playerInDirection = _target.transform.position - transform.position;
         if(playerInDirection.magnitude < DetectionRange)
         {
             Move(playerInDirection.normalized, Speed);
+        }
+
+        _attention -= Time.deltaTime;
+        if (_attention <= 0)
+        {
+            _target = GameObject.FindWithTag("HeavensDoor");
+        }
+
+        if (_attackCooldown >= 0)
+        {
+            _attackCooldown -= Time.deltaTime;
         }
     }
 
@@ -39,10 +54,24 @@ public class Enemies : MovableObject
         base.OnDamaged(damage);
         HealthSlider.gameObject.SetActive(true);
         HealthSlider.value = Health / StartHealth;
+        _target = GameObject.FindWithTag("Player");
+        _attention = AttentionLength;
     }
 
     public override void OnKilled()
     {
         Destroy(gameObject);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+
+        if (_attackCooldown <= 0)
+        {
+            IAttackable attacked = other.gameObject.GetComponent<IAttackable>();
+            attacked?.OnDamaged(Damage);
+
+            _attackCooldown = AttackSpeed;
+        }
     }
 }
