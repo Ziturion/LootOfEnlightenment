@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemySpawner: {fileID: 275683698}
-  SpawnCooldown: 0
+  SpawnCooldown: 1.5
 --- !u!4 &468343707
 Transform:
   m_ObjectHideFlags: 0

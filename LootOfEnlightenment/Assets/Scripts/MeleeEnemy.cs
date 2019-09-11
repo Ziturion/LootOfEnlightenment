@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemies : MovableObject
+public class MeleeEnemy : MovableObject
 {
     public float DetectionRange = 100;
     public float Speed = 0.02f;
@@ -65,7 +65,8 @@ public class Enemies : MovableObject
 
     private void OnTriggerStay2D(Collider2D other)
     {
-
+        if (other.gameObject.CompareTag("Enemy"))
+            return;
         if (_attackCooldown <= 0)
         {
             IAttackable attacked = other.gameObject.GetComponent<IAttackable>();
