@@ -813,7 +813,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemySpawner: {fileID: 275683698}
-  SpawnCooldown: 1.5
+  EnemyCooldown: 1
+  PickUpSpawner: {fileID: 931925780}
+  PickUpCooldown: 1
 --- !u!4 &468343707
 Transform:
   m_ObjectHideFlags: 0
@@ -826,7 +828,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -969,6 +971,7 @@ MonoBehaviour:
   AttackCharge: 2
   ProjectileSpeed: 0.15
   AttackDamage: 2
+  Ammo: 50
 --- !u!61 &675319448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1377,6 +1380,55 @@ Transform:
   - {fileID: 1763955893}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &931925780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 931925782}
+  - component: {fileID: 931925781}
+  m_Layer: 0
+  m_Name: PickUpSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &931925781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931925780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3b26c5a993e0046a05f9b37dcc916f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealPrefab: {fileID: 4541878183222864606, guid: e86541260c17076438ec394acc778774,
+    type: 3}
+  AmmoPrefab: {fileID: 1806183878425752501, guid: 25ac0206fa3e6be4a9f3736ca5e7c9e5,
+    type: 3}
+  ExpPrefab: {fileID: 2420983400071554893, guid: 7fec32b8f88870846a9bdea5c5af508f,
+    type: 3}
+--- !u!4 &931925782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931925780}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.8511484, y: 0.45971918, z: -1.6235911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137029475
 GameObject:
@@ -1974,7 +2026,7 @@ PrefabInstance:
     - target: {fileID: 7677446254958911006, guid: 9d9dd56ac7c00d74896076b810de5886,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7677446254958911006, guid: 9d9dd56ac7c00d74896076b810de5886,
         type: 3}

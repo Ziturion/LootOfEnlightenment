@@ -5,19 +5,29 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject EnemySpawner;
-    public float SpawnCooldown;
-    private float _sCooldown;
+    public float EnemyCooldown;
+    private float _eCooldown;
+    public GameObject PickUpSpawner;
+    public float PickUpCooldown;
+    private float _pCooldown;
     private void Awake()
     {
-        _sCooldown = SpawnCooldown;
+        _eCooldown = EnemyCooldown;
+        _pCooldown = PickUpCooldown;
     }
     void Update()
     {
-        _sCooldown -= Time.deltaTime;
-        if(_sCooldown <= 0)
+        _eCooldown -= Time.deltaTime;
+        _pCooldown -= Time.deltaTime;
+        if(_eCooldown <= 0)
         {
             EnemySpawner.GetComponent<Spawner>().SpawnEnemy();
-            _sCooldown = SpawnCooldown;
+            _eCooldown = EnemyCooldown;
+        }
+        if(_pCooldown <= 0)
+        {
+            PickUpSpawner.GetComponent<PickUpSpawner>().SpawnItems();
+            _pCooldown = PickUpCooldown;
         }
     }
 }

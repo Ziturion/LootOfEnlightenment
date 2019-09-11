@@ -6,7 +6,6 @@ public class PickUp : MonoBehaviour
 {
     public string Type;
 
-    private float _bonusSpeed = 1.5f;
     private int _bonusHeal = 5;
     private int _bonusAmmo = 10;
 
@@ -14,15 +13,14 @@ public class PickUp : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")   //health, ammo, experience, 
         {
+            Debug.Log(Type);
             switch(Type)
             {
                 case "Heal":
-                    collision.gameObject.GetComponent<Player>().Health += collision.gameObject.GetComponent<Player>().StartHealth / 5;
+                    collision.gameObject.GetComponent<Player>().Health += _bonusHeal;
                     break;
-                //case "Speed":
-                //    collision.gameObject.GetComponent<Player>().MovementSpeed *= 1.5f;
-                //    break;
                 case "Ammo":
+                    collision.gameObject.GetComponent<Player>().Ammo += _bonusAmmo;
                     break;
                 case "Exp":
                     break;
