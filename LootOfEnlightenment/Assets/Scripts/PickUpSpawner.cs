@@ -17,4 +17,10 @@ public class PickUpSpawner : MonoBehaviour
         else if (randomNum > 50)
             Instantiate(AmmoPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
     }
+
+    public void SpawnExp(Vector3 playerPosition)
+    {
+        PickUp spawnedItem = Instantiate(ExpPrefab, playerPosition, Quaternion.identity);
+        spawnedItem.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(0, 1), Random.Range(0, 1)));
+    }
 }
