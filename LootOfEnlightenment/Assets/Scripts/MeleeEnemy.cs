@@ -53,7 +53,7 @@ public class MeleeEnemy : MovableObject
     {
         base.OnDamaged(damage);
         HealthSlider.gameObject.SetActive(true);
-        HealthSlider.value = Health / StartHealth;
+        HealthSlider.value = Health / MaxHealth;
         _target = GameObject.FindWithTag("Player");
         _attention = AttentionLength;
     }

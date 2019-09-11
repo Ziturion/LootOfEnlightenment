@@ -2,13 +2,13 @@
 using UnityEngine;
 
 
-public class DUMMY_ChargeUI : MonoBehaviour
+public class AmmoUI : MonoBehaviour
 {
     public Player PlayerRef;
     public TMP_Text Text;
 
     void Update()
     {
-        Text.text = PlayerRef.AttackMultiplayer.ToString("0.00");
+        Text.text = PlayerRef.Ammo.ToString("00");
     }
 }

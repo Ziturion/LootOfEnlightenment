@@ -11,13 +11,13 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")   //health, ammo, experience, 
+        if(collision.gameObject.CompareTag("Player"))   //health, ammo, experience, 
         {
             Debug.Log(Type);
             switch(Type)
             {
                 case "Heal":
-                    collision.gameObject.GetComponent<Player>().Health += _bonusHeal;
+                    collision.gameObject.GetComponent<Player>().AddHealth(_bonusHeal);
                     break;
                 case "Ammo":
                     collision.gameObject.GetComponent<Player>().AddAmmo(_bonusAmmo);

@@ -2,12 +2,12 @@
 
 public abstract class MovableObject : MonoBehaviour, IAttackable
 {
-    public float StartHealth = 10f;
+    public float MaxHealth = 10f;
     public float Health { get; set; }
 
     protected virtual void Awake()
     {
-        Health = StartHealth;
+        Health = MaxHealth;
     }
 
     protected virtual void Move(Vector3 direction, float speed)

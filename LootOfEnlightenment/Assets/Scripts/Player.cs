@@ -13,13 +13,13 @@ public class Player : MovableObject
 
     private Animator _anim;
     private bool _attacking;
-    private int _ammo;
+    public int Ammo { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
         _anim = GetComponent<Animator>();
-        _ammo = MaxAmmo;
+        Ammo = MaxAmmo;
     }
 
     void Update()
@@ -29,12 +29,12 @@ public class Player : MovableObject
             Move(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), MovementSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _ammo != 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo != 0)
         {
             StartAttack();
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && _ammo != 0)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && Ammo != 0)
         {
             StopAttack();
         }
@@ -49,7 +49,7 @@ public class Player : MovableObject
     {
         Vector3 dir = Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
         ProjectilePool.Instance.SpawnProjectile(transform.position, dir, AttackDamage * AttackMultiplayer, ProjectileSpeed);
-        _ammo--;
+        Ammo--;
         _attacking = false;
         AttackMultiplayer = 1;
     }
@@ -69,6 +69,11 @@ public class Player : MovableObject
 
     public void AddAmmo(int value)
     {
-        _ammo += value;
+        Ammo = Mathf.Clamp(Ammo + value, 0, MaxAmmo);
+    }
+
+    public void AddHealth(int value)
+    {
+        Health = Mathf.Clamp(Health + value, 0, MaxHealth);
     }
 }
