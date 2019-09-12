@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEditor.Animations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
 public class Player : MovableObject
 {
     public static event Action OnPlayerDied;

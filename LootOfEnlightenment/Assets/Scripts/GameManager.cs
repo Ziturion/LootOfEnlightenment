@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float PickUpCooldown;
     private float _pCooldown;
 
+    public Player[] Characters;
+
     private bool _waveOn = true;
     public int WaveLengthInSec = 15;
     public int PauseLengthInSec = 15;
@@ -19,12 +21,31 @@ public class GameManager : MonoBehaviour
     private float _pauseLength;
 
     private float _timeTracker;
+
+    public Player ActivePlayer;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance != null)
+                return _instance;
+            _instance = FindObjectOfType<GameManager>();
+            return _instance;
+        }
+    }
+
+    private static GameManager _instance;
+
     private void Awake()
     {
         _eCooldown = EnemyCooldown;
         _pCooldown = PickUpCooldown;
         _waveLength = WaveLengthInSec;
         _pauseLength = PauseLengthInSec;
+        int characterSelected = PlayerPrefs.GetInt("Character", 0);
+        Debug.Log(characterSelected);
+        ActivePlayer = Instantiate(Characters[characterSelected]);
     }
     void Update()
     {
