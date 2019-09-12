@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
 
     public Player ActivePlayer;
 
+    private float _audioVolumeChange;
+    private bool _hasChanged;
+    private AudioSource _audioSource;
+
+    public AudioClip AmbientShouting;
+
     public static GameManager Instance
     {
         get
@@ -47,6 +53,11 @@ public class GameManager : MonoBehaviour
         int characterSelected = PlayerPrefs.GetInt("Character", 0);
         Debug.Log(characterSelected);
         ActivePlayer = Instantiate(Characters[characterSelected]);
+
+        _audioSource = GetComponent<AudioSource>();
+
+        _audioSource.clip = AmbientShouting;
+        _audioSource.Play();
     }
     void Update()
     {
@@ -65,7 +76,7 @@ public class GameManager : MonoBehaviour
                 _pCooldown += PickUpCooldown;
             }
         }
-        else if(_pauseLength <= 0)
+        else if (_pauseLength <= 0)
         {
             _waveOn = true;
             _eCooldown = Time.time;
@@ -74,6 +85,9 @@ public class GameManager : MonoBehaviour
 
             WaveNumber++;
             ChangeCooldowns();
+
+            _hasChanged = false;
+            _audioVolumeChange = 1f;
         }
 
         if (_waveLength < Time.time)
@@ -82,11 +96,31 @@ public class GameManager : MonoBehaviour
             _waveLength += WaveLengthInSec + PauseLengthInSec;
             _pauseLength = PauseLengthInSec;
 
+            _audioVolumeChange = .2f;
+            _hasChanged = false;
+
             //MeleeEnemy[] enemies = FindObjectsOfType<MeleeEnemy>();
             //foreach(MeleeEnemy e in enemies)
             //{
             //    Destroy(e.gameObject);
             //}
+        }
+
+        if (!_hasChanged)
+        {
+            if (_audioSource.volume > _audioVolumeChange)
+            {
+                _audioSource.volume -= Time.deltaTime;
+                if (_audioSource.volume <= _audioVolumeChange)
+                    _hasChanged = true;
+            }
+
+            if (_audioSource.volume < _audioVolumeChange)
+            {
+                _audioSource.volume -= Time.deltaTime;
+                if (_audioSource.volume >= _audioVolumeChange)
+                    _hasChanged = true;
+            }
         }
     }
 

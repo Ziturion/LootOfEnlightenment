@@ -35,31 +35,40 @@ public class Player : MovableObject
     public int RequiredExp { get; private set; }
     public int Ammo { get; private set; }
 
-    private AudioSource AudioSource;
+    private AudioSource _audioSource;
 
     public AudioClip ShootSound;
     public AudioClip AoESound;
+    public AudioClip DamageSound;
+    public AudioClip LvlUpSound;
 
+    private float _normalVolume;
+    public float ShootSoundVolume = 0.15f;
+
+    private bool _blocked;
     //private Vector3 IdleStaffPos;
 
     protected override void Awake()
     {
         base.Awake();
         _anim = GetComponent<Animator>();
-        AudioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         Ammo = MaxAmmo;
         PlayerLevel = 1;
         RequiredExp = CalculateRequiredExp();
         AttackMultiplayer = 1;
+        _normalVolume = _audioSource.volume;
         //IdleStaffPos = Staff.transform.localPosition;
     }
 
     void Update()
     {
+        if (_blocked)
+            return;
         Vector3 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 lookAt = mouseScreenPosition;
-        
+
         float angleDeg = (180 / Mathf.PI) * Mathf.Atan2(lookAt.y - transform.position.y, lookAt.x - transform.position.x);
 
         transform.rotation = Quaternion.Euler(0, 0, angleDeg - 90);
@@ -82,7 +91,7 @@ public class Player : MovableObject
             StopAttack();
         }
 
-        if(Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (SpecialSpeedTime <= 0)
             {
@@ -94,8 +103,9 @@ public class Player : MovableObject
                 }
                 SpecialSpeedTime = SpecialSpeed;
                 Instantiate(AoEEffect, transform.position, Quaternion.identity);
-                AudioSource.clip = AoESound;
-                AudioSource.Play();
+                _audioSource.volume = _normalVolume;
+                _audioSource.clip = AoESound;
+                _audioSource.Play();
             }
         }
 
@@ -108,8 +118,9 @@ public class Player : MovableObject
                 _attackSpeedTime = AttackSpeed;
 
                 _anim.Play("PlayerAttack");
-                AudioSource.clip = ShootSound;
-                AudioSource.Play();
+                _audioSource.volume = ShootSoundVolume;
+                _audioSource.clip = ShootSound;
+                _audioSource.Play();
             }
             //AttackMultiplayer = Mathf.Clamp(AttackMultiplayer + Time.deltaTime, 1, AttackCharge);
         }
@@ -134,6 +145,7 @@ public class Player : MovableObject
     public override void OnKilled()
     {
         Debug.Log("Player Ded.");
+        _blocked = true;
         OnPlayerDied?.Invoke();
     }
 
@@ -150,13 +162,16 @@ public class Player : MovableObject
     public void AddExp(int value)
     {
         Experience += value;
-        
-        if(Experience >= RequiredExp)
+
+        if (Experience >= RequiredExp)
         {
             PlayerLevel++;
             Experience -= RequiredExp;
             RequiredExp = CalculateRequiredExp();
             IncreaseStats();
+            _audioSource.volume = _normalVolume;
+            _audioSource.clip = LvlUpSound;
+            _audioSource.Play();
         }
     }
 
@@ -171,5 +186,13 @@ public class Player : MovableObject
         MaxHealth += Random.Range(1, 4);
         MaxAmmo += Random.Range(1, 4);
         AttackSpeed *= Random.Range(.93f, .96f);
+    }
+
+    public override void OnDamaged(float damage)
+    {
+        base.OnDamaged(damage);
+        _audioSource.volume = _normalVolume;
+        _audioSource.clip = DamageSound;
+        _audioSource.Play();
     }
 }
