@@ -10,11 +10,17 @@ public class PickUp : MonoBehaviour
     private int _bonusAmmo = 1;
     private int _expGained = 2;
 
+    private AudioSource _audioSourcePU;
+
+    public AudioClip PickUpSound;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))   //health, ammo, experience, 
         {
-            switch(Type)
+            _audioSourcePU.Play();
+
+            switch (Type)
             {
                 case "Heal":
                     collision.gameObject.GetComponent<Player>().AddHealth(_bonusHeal);
