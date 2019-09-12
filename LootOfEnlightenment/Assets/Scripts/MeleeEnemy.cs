@@ -63,6 +63,7 @@ public class MeleeEnemy : MovableObject
         PickUpSpawner expSpawner = GameObject.FindObjectOfType(typeof(PickUpSpawner)) as PickUpSpawner;
         expSpawner.SpawnEnemyDrops(transform.position);
         Destroy(gameObject);
+        BloodPool.Instance.SpawnBloodSplatter(transform.position,Vector3.up, 1,1);
     }
 
     private void OnTriggerStay2D(Collider2D other)
