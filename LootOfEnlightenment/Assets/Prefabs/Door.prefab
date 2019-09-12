@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae706655655acc24290a537039fa2ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHealth: 10
+  StartHealth: 30.2
   HealthSlider: {fileID: 7677446256411500376}
 --- !u!1 &7677446255122830382
 GameObject:
