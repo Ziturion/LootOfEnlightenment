@@ -6,11 +6,11 @@ public class Spawner : MonoBehaviour
 {
     public MeleeEnemy EnemyPrefab;
     //public Object EnemyPrefab2;
-    public void SpawnEnemy()
+    public void SpawnEnemy(int wave)
     {
+        wave++;
         MeleeEnemy spawnedEnemy = Instantiate(EnemyPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
-        spawnedEnemy.MaxHealth += 0;        //Scale this
-        spawnedEnemy.AttackSpeed *= 1;
+        spawnedEnemy.MaxHealth += Random.Range(1 * wave + 1, 3 * wave);
         spawnedEnemy.Speed *= 1;
         spawnedEnemy.Health = spawnedEnemy.MaxHealth;
     }

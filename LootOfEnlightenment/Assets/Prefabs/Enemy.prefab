@@ -355,11 +355,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c769f4889da648e4f9931d5750fb9ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHealth: 10
+  MaxHealth: 3.95
   DetectionRange: 100
   Speed: 0.02
   AttentionLength: 3
   AttackSpeed: 1
+  Damage: 1
   HealthSlider: {fileID: 8380393688471641767}
 --- !u!50 &6515898024603445401
 Rigidbody2D:
