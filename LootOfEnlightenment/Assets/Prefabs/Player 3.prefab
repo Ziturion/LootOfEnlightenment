@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 7468824490276334630}
   - component: {fileID: 7468824490276334631}
   - component: {fileID: 7468824490276334633}
+  - component: {fileID: -5935275107673217095}
   m_Layer: 0
   m_Name: Player 3
   m_TagString: Player
@@ -254,8 +255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  Staff: {fileID: 4324641323353094370}
-  StaffAttackPos: {fileID: 32810207618321419}
   MovementSpeed: 0.1
   AttackCharge: 2
   ProjectileSpeed: 0.15
@@ -265,3 +264,24 @@ MonoBehaviour:
   SpecialSpeed: 10
   SpecialRadius: 4
   SpecialDamage: 8
+--- !u!50 &-5935275107673217095
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7468824490276334634}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
