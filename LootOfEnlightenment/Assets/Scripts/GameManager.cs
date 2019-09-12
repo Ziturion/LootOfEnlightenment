@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public Player ActivePlayer;
 
-    private float _audioVolumeChange = .2f;
+    private float _audioVolumeChange = .1f * .25f;
     private bool _hasChanged;
     private AudioSource _audioSource;
 
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
             ChangeCooldowns();
 
             _hasChanged = false;
-            _audioVolumeChange = .2f;
+            _audioVolumeChange = .1f * .25f;
         }
 
         if (_waveLength < Time.time)
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             _waveLength += WaveLengthInSec + PauseLengthInSec;
             _pauseLength = PauseLengthInSec;
 
-            _audioVolumeChange = .04f;
+            _audioVolumeChange = .02f * .25f;
             _hasChanged = false;
 
             //MeleeEnemy[] enemies = FindObjectsOfType<MeleeEnemy>();
