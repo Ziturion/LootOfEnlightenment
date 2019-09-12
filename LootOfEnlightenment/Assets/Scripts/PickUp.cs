@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,9 +11,7 @@ public class PickUp : MonoBehaviour
     private int _bonusAmmo = 1;
     private int _expGained = 2;
 
-    private AudioSource _audioSourcePU;
-
-    public AudioClip PickUpSound;
+    public static event Action OnCollected;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,6 +33,7 @@ public class PickUp : MonoBehaviour
                 default:
                     break;
             }
+            OnCollected?.Invoke();
             Destroy(gameObject);
         }
     }
