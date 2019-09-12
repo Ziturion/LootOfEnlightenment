@@ -6,7 +6,7 @@ public class MeleeEnemy : MovableObject
     public float DetectionRange = 100;
     public float Speed = 0.02f;
     public float AttentionLength = 3;
-    public float AttackSpeed = 0.2f;
+    public float AttackSpeed = 1.5f;
     public float Damage = 1;
     public Slider HealthSlider;
 

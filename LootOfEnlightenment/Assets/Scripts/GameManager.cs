@@ -5,10 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject EnemySpawner;
-    public float EnemyCooldown;
+    public float EnemyCooldown = 5f;
     private float _eCooldown;
     public GameObject PickUpSpawner;
-    public float PickUpCooldown;
+    public float PickUpCooldown = 10;
     private float _pCooldown;
 
     public Player[] Characters;
@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private bool _waveOn = true;
     public int WaveLengthInSec = 15;
     public int PauseLengthInSec = 15;
+    public int WaveNumber{get; private set;}
 
     private int _waveLength;
     private float _pauseLength;
@@ -67,6 +68,8 @@ public class GameManager : MonoBehaviour
         else if(_pauseLength <= 0)
         {
             _waveOn = true;
+            WaveNumber++;
+            ChangeCooldowns();
         }
 
         if (_waveLength < Time.time)
@@ -81,5 +84,10 @@ public class GameManager : MonoBehaviour
                 Destroy(e.gameObject);
             }
         }
+    }
+
+    public void ChangeCooldowns()
+    {
+        EnemyCooldown *= Random.Range(.9f, .95f);
     }
 }

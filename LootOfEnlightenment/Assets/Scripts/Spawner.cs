@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Object EnemyPrefab;
+    public MeleeEnemy EnemyPrefab;
     //public Object EnemyPrefab2;
     public void SpawnEnemy()
     {
-        //Random.Range(0, 1000);
-        Instantiate(EnemyPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
-        //Instantiate(EnemyPrefab2, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
+        MeleeEnemy spawnedEnemy = Instantiate(EnemyPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
+        spawnedEnemy.MaxHealth += 0;        //Scale this
+        spawnedEnemy.AttackSpeed *= 1;
+        spawnedEnemy.Speed *= 1;
+        spawnedEnemy.Health = spawnedEnemy.MaxHealth;
     }
 }
