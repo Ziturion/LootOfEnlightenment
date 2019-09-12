@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HeavensDoor : MonoBehaviour, IAttackable
 {
+    public static event Action OnGameOver;
+
     public float StartHealth = 10f;
     public Slider HealthSlider;
 
@@ -26,5 +29,6 @@ public class HeavensDoor : MonoBehaviour, IAttackable
     public void OnKilled()
     {
         Debug.Log("Game Over");
+        OnGameOver?.Invoke();
     }
 }

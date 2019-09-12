@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Animator))]
 public class Player : MovableObject
 {
+    public static event Action OnPlayerDied;
+
     public float MovementSpeed = 0.1f;
     public float AttackCharge = 2f;
     public float ProjectileSpeed = 0.25f;
@@ -109,6 +113,7 @@ public class Player : MovableObject
     public override void OnKilled()
     {
         Debug.Log("Player Ded.");
+        OnPlayerDied?.Invoke();
     }
 
     public void AddAmmo(int value)
