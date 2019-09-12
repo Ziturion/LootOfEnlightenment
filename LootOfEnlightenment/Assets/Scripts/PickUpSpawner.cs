@@ -25,7 +25,7 @@ public class PickUpSpawner : MonoBehaviour
             PickUp spawnedItem = Instantiate(ExpPrefab, playerPosition, Quaternion.identity);
             spawnedItem.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(GetRandomBigNumber(), GetRandomBigNumber()));
         }
-        for(int i = 3; i >= 0; i--)
+        for(int i = 2; i >= 0; i--)
         {
             PickUp spawnedAmmo = Instantiate(AmmoPrefab, playerPosition, Quaternion.identity);
             spawnedAmmo.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(GetRandomBigNumber(), GetRandomBigNumber()));
