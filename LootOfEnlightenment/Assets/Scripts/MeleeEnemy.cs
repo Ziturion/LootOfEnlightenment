@@ -15,7 +15,7 @@ public class MeleeEnemy : MovableObject
     private float _attackCooldown;
 
     private Vector2 _gotHinInDirection;
-    public ParticleSystem BloodSplatter;
+    public Object BloodSplatter;
 
     protected override void Awake()
     {
@@ -71,10 +71,9 @@ public class MeleeEnemy : MovableObject
 
     public override void OnKilled()
     {
-        ParticleSystem blood = Instantiate(BloodSplatter, transform.position, Quaternion.LookRotation(_gotHinInDirection));
+        Object blood = Instantiate(BloodSplatter, transform.position, Quaternion.LookRotation(_gotHinInDirection));
         PickUpSpawner expSpawner = GameObject.FindObjectOfType(typeof(PickUpSpawner)) as PickUpSpawner;
         expSpawner.SpawnEnemyDrops(transform.position);
-        blood.Play();
         Destroy(gameObject);
     }
 

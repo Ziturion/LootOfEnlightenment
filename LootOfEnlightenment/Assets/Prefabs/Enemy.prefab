@@ -364,7 +364,7 @@ MonoBehaviour:
   AttackSpeed: 1
   Damage: 1
   HealthSlider: {fileID: 8380393688471641767}
-  BloodSplatter: {fileID: 893382809099895862, guid: cda575e63fcbd31458ab328041cc55c6,
+  BloodSplatter: {fileID: 8099054072529678152, guid: aad1d7176f99bbe408c8d1f90f3cf676,
     type: 3}
 --- !u!50 &6515898024603445401
 Rigidbody2D:
