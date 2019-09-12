@@ -80,11 +80,11 @@ public class GameManager : MonoBehaviour
             _waveLength += WaveLengthInSec + PauseLengthInSec;
             _pauseLength = PauseLengthInSec;
 
-            MeleeEnemy[] enemies = FindObjectsOfType<MeleeEnemy>();
-            foreach(MeleeEnemy e in enemies)
-            {
-                Destroy(e.gameObject);
-            }
+            //MeleeEnemy[] enemies = FindObjectsOfType<MeleeEnemy>();
+            //foreach(MeleeEnemy e in enemies)
+            //{
+            //    Destroy(e.gameObject);
+            //}
         }
     }
 
