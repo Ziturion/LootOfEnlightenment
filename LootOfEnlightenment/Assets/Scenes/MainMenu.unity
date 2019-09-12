@@ -617,7 +617,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -241}
+  m_AnchoredPosition: {x: 0, y: -434}
   m_SizeDelta: {x: 48, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962861711
@@ -1309,8 +1309,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -64}
+  m_SizeDelta: {x: -800, y: -699.9998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561582202
 MonoBehaviour:
@@ -1332,7 +1332,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Roxy & Anna & Krina & Nick & Daniel
+  m_text: "Roxane D\xFCrrmann\n\nKarina Klein\n\nEmese-Anna Hoppa\n\nNick Wang\n\nDaniel
+    Majonica"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3702b0f5c7c3664a869ecb2f3950b94, type: 2}
   m_sharedMaterial: {fileID: 5084885834143451148, guid: b3702b0f5c7c3664a869ecb2f3950b94,
@@ -1402,12 +1403,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1561582202}
-    characterCount: 35
+    characterCount: 75
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 5
+    spaceCount: 13
+    wordCount: 10
     linkCount: 0
-    lineCount: 1
+    lineCount: 9
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
