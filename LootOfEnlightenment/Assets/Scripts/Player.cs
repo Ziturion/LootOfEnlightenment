@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 public class Player : MovableObject
 {
     public static event Action OnPlayerDied;
+    public GameObject Staff;
+    public Transform StaffAttackPos;
 
     public float MovementSpeed = 0.1f;
     public float AttackCharge = 2f;
@@ -31,6 +33,8 @@ public class Player : MovableObject
     public int RequiredExp { get; private set; }
     public int Ammo { get; private set; }
 
+    private Vector3 IdleStaffPos;
+
     protected override void Awake()
     {
         base.Awake();
@@ -39,6 +43,7 @@ public class Player : MovableObject
         PlayerLevel = 1;
         RequiredExp = CalculateRequiredExp();
         AttackMultiplayer = 1;
+        IdleStaffPos = Staff.transform.position;
     }
 
     void Update()
@@ -104,11 +109,13 @@ public class Player : MovableObject
         //Ammo--;
         _attacking = false;
         AttackMultiplayer = 1;
+        Staff.transform.position = IdleStaffPos;
     }
 
     private void StartAttack()
     {
         _attacking = true;
+        Staff.transform.position = StaffAttackPos.position;
     }
 
     public override void OnKilled()
