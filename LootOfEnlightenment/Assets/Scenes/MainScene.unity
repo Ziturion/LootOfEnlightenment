@@ -3509,7 +3509,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Waves!
+  m_text: waves!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3702b0f5c7c3664a869ecb2f3950b94, type: 2}
   m_sharedMaterial: {fileID: 5084885834143451148, guid: b3702b0f5c7c3664a869ecb2f3950b94,
