@@ -1173,6 +1173,7 @@ MonoBehaviour:
   ProjectileSpeed: 0.15
   AttackDamage: 2
   MaxAmmo: 50
+  AttackSpeed: 1
 --- !u!61 &675319448
 BoxCollider2D:
   m_ObjectHideFlags: 0
