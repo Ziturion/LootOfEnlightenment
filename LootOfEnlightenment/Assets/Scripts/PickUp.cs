@@ -17,8 +17,6 @@ public class PickUp : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))   //health, ammo, experience, 
         {
-            _audioSourcePU.Play();
-
             switch (Type)
             {
                 case "Heal":
