@@ -7,6 +7,16 @@ public class MainMenu_UI : MonoBehaviour
     public GameObject CreditsPanel;
     public GameObject CharaterSelectionPanel;
 
+    public AudioClip ButtonSound;
+
+    private AudioSource _source;
+
+    void Awake()
+    {
+        _source = GetComponent<AudioSource>();
+        _source.clip = ButtonSound;
+    }
+
     public void StartGame(int character)
     {
         PlayerPrefs.SetInt("Character",character);
@@ -17,13 +27,14 @@ public class MainMenu_UI : MonoBehaviour
     {
         CreditsPanel.SetActive(false);
         CharaterSelectionPanel.SetActive(false);
-
+        _source.Play();
         StartPanel.SetActive(true);
     }
 
     public void ToPanel(string panelName)
     {
         StartPanel.SetActive(false);
+        _source.Play();
         switch (panelName)
         {
             case "Credits":
