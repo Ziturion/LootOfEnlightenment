@@ -20,7 +20,7 @@ public class Player : MovableObject
     public float AttackSpeed = 1f;
 
     public float SpecialSpeed = 10f;
-    public float SpecialRadius = 4f;
+    public float SpecialRadius = 3.5f;
     public float SpecialDamage = 8f;
 
     private float _attackSpeedTime;
