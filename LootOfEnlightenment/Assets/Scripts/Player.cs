@@ -8,6 +8,14 @@ public class Player : MovableObject
     public float ProjectileSpeed = 0.25f;
     public float AttackDamage = 5f;
     public int MaxAmmo = 50;
+    public float AttackSpeed = 1f;
+
+    public float SpecialSpeed = 10f;
+    public float SpecialRadius = 4f;
+    public float SpecialDamage = 8f;
+
+    private float _attackSpeedTime;
+    private float _specialSpeedTime;
 
     public float AttackMultiplayer { get; private set; }
 
@@ -38,41 +46,63 @@ public class Player : MovableObject
 
         transform.rotation = Quaternion.Euler(0, 0, angleDeg - 90);
 
+        _attackSpeedTime -= Time.deltaTime;
+        _specialSpeedTime -= Time.deltaTime;
+
         if (Input.anyKey)
         {
             Move(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), MovementSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo != 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo >= 0)
         {
             StartAttack();
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && Ammo != 0)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && Ammo >= 0)
         {
             StopAttack();
         }
 
+        if(Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (_specialSpeedTime <= 0)
+            {
+                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, SpecialRadius);
+                foreach (Collider2D c in hitColliders)
+                {
+                    if (c.gameObject.CompareTag("Enemy"))
+                        c.gameObject.GetComponent<MovableObject>().OnDamaged(SpecialDamage);
+                }
+                _specialSpeedTime = SpecialSpeed;
+            }
+        }
+
         if (_attacking)
         {
-            AttackMultiplayer = Mathf.Clamp(AttackMultiplayer + Time.deltaTime, 1, AttackCharge);
+            if (_attackSpeedTime <= 0)
+            {
+                ProjectilePool.Instance.SpawnProjectile(transform.position + transform.up, transform.up, AttackDamage * AttackMultiplayer, ProjectileSpeed);
+                Ammo--;
+                _attackSpeedTime = AttackSpeed;
+
+                _anim.Play("PlayerAttack");
+            }
+            //AttackMultiplayer = Mathf.Clamp(AttackMultiplayer + Time.deltaTime, 1, AttackCharge);
         }
     }
 
     private void StopAttack()
     {
         //Vector3 dir = Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
-        ProjectilePool.Instance.SpawnProjectile(transform.position + transform.up, transform.up, AttackDamage * AttackMultiplayer, ProjectileSpeed);
-        Ammo--;
+        //ProjectilePool.Instance.SpawnProjectile(transform.position + transform.up, transform.up, AttackDamage * AttackMultiplayer, ProjectileSpeed);
+        //Ammo--;
         _attacking = false;
         AttackMultiplayer = 1;
     }
 
     private void StartAttack()
     {
-        if (!_attacking)
-            _anim.Play("PlayerAttack");
-
         _attacking = true;
     }
 
@@ -100,11 +130,19 @@ public class Player : MovableObject
             PlayerLevel++;
             Experience -= RequiredExp;
             RequiredExp = CalculateRequiredExp();
+            IncreaseStats();
         }
     }
 
     private int CalculateRequiredExp()
     {
         return 25 * (PlayerLevel + 1) * (1 + (PlayerLevel + 1));
+    }
+
+    private void IncreaseStats()
+    {
+        MaxHealth += Random.Range(1, 4);
+        MaxAmmo += Random.Range(1, 4);
+        AttackSpeed *= Random.Range(.93f, .96f);
     }
 }
