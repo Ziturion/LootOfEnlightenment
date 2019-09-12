@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Player[] Characters;
 
     private bool _waveOn = true;
-    public int WaveLengthInSec = 15;
+    public int WaveLengthInSec = 45;
     public int PauseLengthInSec = 15;
     public int WaveNumber{get; private set;}
 

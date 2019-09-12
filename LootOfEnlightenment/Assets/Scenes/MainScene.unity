@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e466a2601a2dd54e83c875dc1c60987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 6403250991385147479, guid: 3ebd22930a573194394a832296aee339,
+  EnemyPrefab: {fileID: 7056705896428518401, guid: 3ebd22930a573194394a832296aee339,
     type: 3}
 --- !u!4 &275683700
 Transform:
@@ -964,7 +964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45e93b78b2a5e24c89036d6bfa6263b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRef: {fileID: 0}
   Text: {fileID: 305404887}
 --- !u!1 &311125086
 GameObject:
@@ -1321,7 +1320,7 @@ MonoBehaviour:
   - {fileID: 7468824490276334633, guid: 32dccd26661481e4bb12d9244381f8a4, type: 3}
   - {fileID: 7468824490276334633, guid: b2268258cf94098439ee6b861460f11c, type: 3}
   - {fileID: 7468824490276334633, guid: 3fde44c6ee91fd74998cf80d26194c34, type: 3}
-  WaveLengthInSec: 15
+  WaveLengthInSec: 45
   PauseLengthInSec: 15
   ActivePlayer: {fileID: 0}
 --- !u!4 &468343707
@@ -2024,7 +2023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ebcaa1d49643749bfb4b08ef8a5bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
   HealthBar: {fileID: 188265860}
   ChargeBar: {fileID: 1994652973}
   XPBar: {fileID: 255239273}
@@ -2266,7 +2264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c6d8ca7ab349679fadd6aad4286a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRef: {fileID: 0}
   Text: {fileID: 882807196}
 --- !u!222 &882807198
 CanvasRenderer:

@@ -23,6 +23,7 @@ public class GameOver_UI : MonoBehaviour
 
     public void OnGameOver()
     {
+        GameOverPanel.transform.Find("WaveValue").GetComponent<TextMeshProUGUI>().SetText(FindObjectOfType<GameManager>().WaveNumber.ToString());
         GameOverPanel.SetActive(true);
         Time.timeScale = 0.1f;
     }
