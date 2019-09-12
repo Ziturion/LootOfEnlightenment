@@ -270,8 +270,7 @@ MonoBehaviour:
   ShootSound: {fileID: 8300000, guid: db18b9c104ed20443957441e01844988, type: 3}
   AoESound: {fileID: 8300000, guid: 9d70c67249052ea4287a41d2b3635dce, type: 3}
   DamageSound: {fileID: 8300000, guid: 1787cbf8a33275c46aeaacd9f6b4c77c, type: 3}
-  LvlUpSound: {fileID: 8300000, guid: 1180ecb5d04037a479fe0673fda5c8d0, type: 3}
-  ShootSoundVolume: 0.15
+  ShootSoundVolume: 0.01
 --- !u!50 &-5935275107673217095
 Rigidbody2D:
   serializedVersion: 4

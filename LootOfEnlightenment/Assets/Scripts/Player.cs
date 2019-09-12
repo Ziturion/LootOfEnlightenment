@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class Player : MovableObject
 {
     public static event Action OnPlayerDied;
+    public static event Action OnLvlUp;
     //public GameObject Staff;
     //public Transform StaffAttackPos;
 
@@ -40,7 +41,6 @@ public class Player : MovableObject
     public AudioClip ShootSound;
     public AudioClip AoESound;
     public AudioClip DamageSound;
-    public AudioClip LvlUpSound;
 
     private float _normalVolume;
     public float ShootSoundVolume = 0.15f;
@@ -169,9 +169,7 @@ public class Player : MovableObject
             Experience -= RequiredExp;
             RequiredExp = CalculateRequiredExp();
             IncreaseStats();
-            _audioSource.volume = _normalVolume;
-            _audioSource.clip = LvlUpSound;
-            _audioSource.Play();
+            OnLvlUp?.Invoke();
         }
     }
 
