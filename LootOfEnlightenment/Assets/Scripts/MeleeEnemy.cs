@@ -86,7 +86,6 @@ public class MeleeEnemy : MovableObject
         {
             IAttackable attacked = other.gameObject.GetComponent<IAttackable>();
             attacked?.OnDamaged(Damage);
-
             _attackCooldown = AttackSpeed;
         }
     }

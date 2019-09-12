@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public Player ActivePlayer;
 
-    private float _audioVolumeChange;
+    private float _audioVolumeChange = 1;
     private bool _hasChanged;
     private AudioSource _audioSource;
 
@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
         ActivePlayer = Instantiate(Characters[characterSelected]);
 
         _audioSource = GetComponent<AudioSource>();
-
         _audioSource.clip = AmbientShouting;
         _audioSource.Play();
     }
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviour
 
             if (_audioSource.volume < _audioVolumeChange)
             {
-                _audioSource.volume -= Time.deltaTime;
+                _audioSource.volume += Time.deltaTime;
                 if (_audioSource.volume >= _audioVolumeChange)
                     _hasChanged = true;
             }

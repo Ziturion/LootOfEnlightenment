@@ -81,12 +81,12 @@ public class Player : MovableObject
             Move(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), MovementSpeed);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo >= 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo > 0)
         {
             StartAttack();
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && Ammo >= 0)
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             StopAttack();
         }
@@ -111,7 +111,7 @@ public class Player : MovableObject
 
         if (_attacking)
         {
-            if (_attackSpeedTime <= 0)
+            if (_attackSpeedTime < 0)
             {
                 ProjectilePool.Instance.SpawnProjectile(transform.position + transform.up, transform.up, AttackDamage * AttackMultiplayer, ProjectileSpeed);
                 Ammo--;
@@ -123,6 +123,10 @@ public class Player : MovableObject
                 _audioSource.Play();
             }
             //AttackMultiplayer = Mathf.Clamp(AttackMultiplayer + Time.deltaTime, 1, AttackCharge);
+            if(Ammo <= 0)
+            {
+                StopAttack();
+            }
         }
     }
 
