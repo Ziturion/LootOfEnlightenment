@@ -10,6 +10,8 @@ public class Player : MovableObject
     //public GameObject Staff;
     //public Transform StaffAttackPos;
 
+    public AoEEffect AoEEffect;
+
     public float MovementSpeed = 0.1f;
     public float AttackCharge = 2f;
     public float ProjectileSpeed = 0.25f;
@@ -22,7 +24,7 @@ public class Player : MovableObject
     public float SpecialDamage = 8f;
 
     private float _attackSpeedTime;
-    private float _specialSpeedTime;
+    public float SpecialSpeedTime { get; private set; }
 
     public float AttackMultiplayer { get; private set; }
 
@@ -57,7 +59,7 @@ public class Player : MovableObject
         transform.rotation = Quaternion.Euler(0, 0, angleDeg - 90);
 
         _attackSpeedTime -= Time.deltaTime;
-        _specialSpeedTime -= Time.deltaTime;
+        SpecialSpeedTime -= Time.deltaTime;
 
         if (Input.anyKey)
         {
@@ -76,7 +78,7 @@ public class Player : MovableObject
 
         if(Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (_specialSpeedTime <= 0)
+            if (SpecialSpeedTime <= 0)
             {
                 Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, SpecialRadius);
                 foreach (Collider2D c in hitColliders)
@@ -84,7 +86,8 @@ public class Player : MovableObject
                     if (c.gameObject.CompareTag("Enemy"))
                         c.gameObject.GetComponent<MovableObject>().OnDamaged(SpecialDamage);
                 }
-                _specialSpeedTime = SpecialSpeed;
+                SpecialSpeedTime = SpecialSpeed;
+                Instantiate(AoEEffect, transform.position, Quaternion.identity);
             }
         }
 

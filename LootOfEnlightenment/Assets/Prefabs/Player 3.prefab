@@ -255,6 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 10
+  AoEEffect: {fileID: 9202586951992782559, guid: 145971ea42f7f3b4d8b5b7fdc07ed55e,
+    type: 3}
   MovementSpeed: 0.1
   AttackCharge: 2
   ProjectileSpeed: 0.15

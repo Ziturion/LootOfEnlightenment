@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         HealthBar.SetValue(_player.Health / _player.MaxHealth);
-        ChargeBar.SetValue(((_player.AttackMultiplayer / _player.AttackCharge)-0.5f)*2);
+        ChargeBar.SetValue(1 - (_player.SpecialSpeedTime / _player.SpecialSpeed));
         XPBar.SetValue((float)_player.Experience / _player.RequiredExp);
     }
 }
