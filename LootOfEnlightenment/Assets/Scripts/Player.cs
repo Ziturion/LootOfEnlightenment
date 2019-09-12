@@ -17,7 +17,7 @@ public class Player : MovableObject
     public float ProjectileSpeed = 0.25f;
     public float AttackDamage = 5f;
     public int MaxAmmo = 50;
-    public float AttackSpeed = 1f;
+    public float AttackSpeed = .2f;
 
     public float SpecialSpeed = 10f;
     public float SpecialRadius = 3.5f;

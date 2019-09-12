@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject EnemySpawner;
-    public float EnemyCooldown = .7f;
+    public float EnemyCooldown = .5f;
     private float _eCooldown;
     public GameObject PickUpSpawner;
     public float PickUpCooldown = 5f;

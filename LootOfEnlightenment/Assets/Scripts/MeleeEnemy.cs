@@ -53,6 +53,7 @@ public class MeleeEnemy : MovableObject
 
     public void OnCollisionStay2D(Collision2D collision)
     {
+        if(collision.gameObject.CompareTag("Enemy"))
         if(collision.gameObject.transform.position.y > transform.position.y)
         {
             if(collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder >= gameObject.GetComponent<SpriteRenderer>().sortingOrder) 
