@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public int PauseLengthInSec = 15;
 
     private int _waveLength;
-    private int _pauseLength;
+    private float _pauseLength;
 
     private float _timeTracker;
     private void Awake()
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         _timeTracker += Time.deltaTime;
+        _pauseLength -= Time.deltaTime;
         if (_waveOn)
         {
             if (_eCooldown <= _timeTracker)
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
                 _pCooldown += PickUpCooldown;
             }
         }
-        else if(_pauseLength <= _timeTracker)
+        else if(_pauseLength <= 0)
         {
             _waveOn = true;
         }
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             _waveOn = false;
             _waveLength += WaveLengthInSec + PauseLengthInSec;
-            _pauseLength += (int)Time.time;
+            _pauseLength = PauseLengthInSec;
 
             MeleeEnemy[] enemies = FindObjectsOfType<MeleeEnemy>();
             foreach(MeleeEnemy e in enemies)

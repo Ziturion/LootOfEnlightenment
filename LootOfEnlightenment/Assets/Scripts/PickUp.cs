@@ -7,8 +7,8 @@ public class PickUp : MonoBehaviour
     public string Type;
 
     private int _bonusHeal = 5;
-    private int _bonusAmmo = 10;
-    private int _expGained = 5;
+    private int _bonusAmmo = 5;
+    private int _expGained = 2;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
