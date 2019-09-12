@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
             _waveOn = true;
             _eCooldown = Time.time;
             _pCooldown = Time.time;
+            EnemyCooldown *= .95f;
+
             WaveNumber++;
             ChangeCooldowns();
         }

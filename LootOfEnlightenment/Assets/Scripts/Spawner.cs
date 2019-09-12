@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     {
         wave++;
         MeleeEnemy spawnedEnemy = Instantiate(EnemyPrefab, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0), Quaternion.identity);
-        spawnedEnemy.MaxHealth += Random.Range(1 * wave + 1, 3 * wave);
+        spawnedEnemy.MaxHealth += Random.Range(1 * wave + 1, 4 * wave);
         spawnedEnemy.Speed *= 1;
         spawnedEnemy.Health = spawnedEnemy.MaxHealth;
     }
