@@ -2428,9 +2428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemySpawner: {fileID: 275683698}
-  EnemyCooldown: 1
+  EnemyCooldown: 0.7
   PickUpSpawner: {fileID: 931925780}
-  PickUpCooldown: 1
+  PickUpCooldown: 4
   Characters:
   - {fileID: 7468824490276334633, guid: 32dccd26661481e4bb12d9244381f8a4, type: 3}
   - {fileID: 7468824490276334633, guid: b2268258cf94098439ee6b861460f11c, type: 3}

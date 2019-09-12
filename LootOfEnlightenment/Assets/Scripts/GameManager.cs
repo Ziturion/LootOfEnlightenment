@@ -5,10 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject EnemySpawner;
-    public float EnemyCooldown = 5f;
+    public float EnemyCooldown = .7f;
     private float _eCooldown;
     public GameObject PickUpSpawner;
-    public float PickUpCooldown = 10f;
+    public float PickUpCooldown = 5f;
     private float _pCooldown;
 
     public Player[] Characters;

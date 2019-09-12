@@ -262,7 +262,7 @@ MonoBehaviour:
   ProjectileSpeed: 0.15
   AttackDamage: 6
   MaxAmmo: 50
-  AttackSpeed: 0.5
+  AttackSpeed: 0.25
   SpecialSpeed: 10
   SpecialRadius: 4
   SpecialDamage: 8
