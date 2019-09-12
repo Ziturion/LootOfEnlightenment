@@ -12,8 +12,4 @@ public class Level : MonoBehaviour
             collision.gameObject.GetComponent<Player>().OnKilled();
         }
     }
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        Debug.Log(collision);   
-    }
 }

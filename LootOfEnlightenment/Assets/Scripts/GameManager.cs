@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         {
             if (_eCooldown <= _timeTracker)
             {
-                EnemySpawner.GetComponent<Spawner>().SpawnEnemy();
+                EnemySpawner.GetComponent<Spawner>().SpawnEnemy(WaveNumber);
                 _eCooldown += EnemyCooldown;
             }
             if (_pCooldown <= _timeTracker)
