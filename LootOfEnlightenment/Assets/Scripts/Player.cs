@@ -13,9 +13,9 @@ public class Player : MovableObject
 
     private Animator _anim;
     private bool _attacking;
-    private int _experience = 0;
-    private int _playerLevel = 1;
-    private int _requiredExp = 0;
+    public int Experience { get; private set; }
+    public int PlayerLevel { get; private set; }
+    public int RequiredExp { get; private set; }
     public int Ammo { get; private set; }
 
     protected override void Awake()
@@ -23,7 +23,8 @@ public class Player : MovableObject
         base.Awake();
         _anim = GetComponent<Animator>();
         Ammo = MaxAmmo;
-        _requiredExp = CalculateRequiredExp();
+        PlayerLevel = 1;
+        RequiredExp = CalculateRequiredExp();
         AttackMultiplayer = 1;
     }
 
@@ -60,8 +61,8 @@ public class Player : MovableObject
 
     private void StopAttack()
     {
-        Vector3 dir = Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
-        ProjectilePool.Instance.SpawnProjectile(transform.position, dir, AttackDamage * AttackMultiplayer, ProjectileSpeed);
+        //Vector3 dir = Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
+        ProjectilePool.Instance.SpawnProjectile(transform.position + transform.up, transform.up, AttackDamage * AttackMultiplayer, ProjectileSpeed);
         Ammo--;
         _attacking = false;
         AttackMultiplayer = 1;
@@ -92,18 +93,18 @@ public class Player : MovableObject
 
     public void AddExp(int value)
     {
-        _experience += value;
+        Experience += value;
         
-        if(_experience >= _requiredExp)
+        if(Experience >= RequiredExp)
         {
-            _playerLevel++;
-            _experience -= _requiredExp;
-            _requiredExp = CalculateRequiredExp();
+            PlayerLevel++;
+            Experience -= RequiredExp;
+            RequiredExp = CalculateRequiredExp();
         }
     }
 
     private int CalculateRequiredExp()
     {
-        return 25 * (_playerLevel + 1) * (1 + (_playerLevel + 1));
+        return 25 * (PlayerLevel + 1) * (1 + (PlayerLevel + 1));
     }
 }

@@ -11,6 +11,7 @@ public class TileBar_UI : MonoBehaviour
     public int SecondSpriteNumber = 4;
     public int MaxAmount;
     public int YOffset = 0;
+    public int TileOffset = 3;
     public float Value;
 
     private List<GameObject> _tiles = new List<GameObject>();
@@ -23,7 +24,7 @@ public class TileBar_UI : MonoBehaviour
         for (int i = 0; i < MaxAmount; i++)
         {
             GameObject go = Instantiate(Tile, transform);
-            go.transform.localPosition += new Vector3(i*3, YOffset);
+            go.transform.localPosition += new Vector3(i*TileOffset, YOffset);
             _tiles.Add(go);
         }
 
@@ -39,7 +40,9 @@ public class TileBar_UI : MonoBehaviour
         while (tiles < _activetiles)
         {
             
-            _tiles.Last(t => t.activeSelf).SetActive(false);
+            GameObject lasttile = _tiles.LastOrDefault(t => t.activeSelf);
+            if(lasttile != null)
+                lasttile.SetActive(false);
             _activetiles--;
             if (SecondSprite != null)
             {
@@ -56,7 +59,9 @@ public class TileBar_UI : MonoBehaviour
 
         while (tiles > _activetiles)
         {
-            _tiles.First(t => !t.activeSelf).SetActive(true);
+            GameObject lasttile = _tiles.FirstOrDefault(t => !t.activeSelf);
+            if (lasttile != null)
+                lasttile.SetActive(true);
             _activetiles++;
             if (SecondSprite != null)
             {
