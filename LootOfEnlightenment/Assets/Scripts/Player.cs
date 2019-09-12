@@ -35,12 +35,18 @@ public class Player : MovableObject
     public int RequiredExp { get; private set; }
     public int Ammo { get; private set; }
 
+    private AudioSource AudioSource;
+
+    public AudioClip ShootSound;
+    public AudioClip AoESound;
+
     //private Vector3 IdleStaffPos;
 
     protected override void Awake()
     {
         base.Awake();
         _anim = GetComponent<Animator>();
+        AudioSource = GetComponent<AudioSource>();
         Ammo = MaxAmmo;
         PlayerLevel = 1;
         RequiredExp = CalculateRequiredExp();
@@ -88,6 +94,8 @@ public class Player : MovableObject
                 }
                 SpecialSpeedTime = SpecialSpeed;
                 Instantiate(AoEEffect, transform.position, Quaternion.identity);
+                AudioSource.clip = AoESound;
+                AudioSource.Play();
             }
         }
 
@@ -100,6 +108,8 @@ public class Player : MovableObject
                 _attackSpeedTime = AttackSpeed;
 
                 _anim.Play("PlayerAttack");
+                AudioSource.clip = ShootSound;
+                AudioSource.Play();
             }
             //AttackMultiplayer = Mathf.Clamp(AttackMultiplayer + Time.deltaTime, 1, AttackCharge);
         }
