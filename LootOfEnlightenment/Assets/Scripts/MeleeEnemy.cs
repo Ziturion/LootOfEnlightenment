@@ -22,6 +22,8 @@ public class MeleeEnemy : MovableObject
 
     private void Update()
     {
+
+
         Vector3 playerInDirection = _target.transform.position - transform.position;
         if(playerInDirection.magnitude < DetectionRange)
         {
@@ -38,6 +40,12 @@ public class MeleeEnemy : MovableObject
         {
             _attackCooldown -= Time.deltaTime;
         }
+
+        Vector3 lookAt = _target.transform.position;
+
+        float angleDeg = (180 / Mathf.PI) * Mathf.Atan2(lookAt.y - transform.position.y, lookAt.x - transform.position.x);
+
+        transform.rotation = Quaternion.Euler(0, 0, angleDeg - 90);
     }
 
     public void OnCollisionStay2D(Collision2D collision)
@@ -63,7 +71,6 @@ public class MeleeEnemy : MovableObject
         PickUpSpawner expSpawner = GameObject.FindObjectOfType(typeof(PickUpSpawner)) as PickUpSpawner;
         expSpawner.SpawnEnemyDrops(transform.position);
         Destroy(gameObject);
-        BloodPool.Instance.SpawnBloodSplatter(transform.position,Vector3.up, 1,1);
     }
 
     private void OnTriggerStay2D(Collider2D other)
