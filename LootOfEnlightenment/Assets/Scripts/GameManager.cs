@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public float EnemyCooldown = 5f;
     private float _eCooldown;
     public GameObject PickUpSpawner;
-    public float PickUpCooldown = 10;
+    public float PickUpCooldown = 10f;
     private float _pCooldown;
 
     public Player[] Characters;
@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
         else if(_pauseLength <= 0)
         {
             _waveOn = true;
+            _eCooldown = Time.time;
+            _pCooldown = Time.time;
             WaveNumber++;
             ChangeCooldowns();
         }
