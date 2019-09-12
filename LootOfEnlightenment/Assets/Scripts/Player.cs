@@ -157,6 +157,7 @@ public class Player : MovableObject
 
     private void IncreaseStats()
     {
+        AttackDamage += Random.Range(1, 3);
         MaxHealth += Random.Range(1, 4);
         MaxAmmo += Random.Range(1, 4);
         AttackSpeed *= Random.Range(.93f, .96f);
