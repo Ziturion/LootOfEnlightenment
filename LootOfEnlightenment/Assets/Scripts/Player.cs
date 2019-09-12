@@ -29,6 +29,14 @@ public class Player : MovableObject
 
     void Update()
     {
+        Vector3 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 lookAt = mouseScreenPosition;
+        
+        float angleDeg = (180 / Mathf.PI) * Mathf.Atan2(lookAt.y - transform.position.y, lookAt.x - transform.position.x);
+
+        transform.rotation = Quaternion.Euler(0, 0, angleDeg - 90);
+
         if (Input.anyKey)
         {
             Move(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")), MovementSpeed);
